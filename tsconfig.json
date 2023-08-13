@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "lib": [
+            "ES2019"
+        ],
+        "outDir": "fuzzySearchLib.omnifocusjs/Resources"
+    },
+    "include": [
+        "src/*"
+    ]
+}
