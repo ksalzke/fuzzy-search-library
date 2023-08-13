@@ -1,5 +1,18 @@
 (function () {
     var lib = new PlugIn.Library(new Version('1.0'));
+    lib.getTaskPath = function (task) {
+        var getPath = function (task) {
+            if (!task.parent)
+                return task.name; // project in inbox
+            if (task.parent === task.containingProject.task)
+                return task.containingProject.name + " > " + task.name;
+            else if (task.parent === task.containingProject.task)
+                return task.name;
+            else
+                return getPath(task.parent) + " > " + task.name;
+        };
+        return getPath(task);
+    };
     lib.searchForm = function (allItems, itemTitles, firstSelected, matchingFunction) {
         var form = new Form();
         // search box
@@ -46,11 +59,12 @@
         return form;
     };
     lib.allTasksFuzzySearchForm = function () {
-        return lib.searchForm(flattenedTasks, flattenedTasks.map(function (t) { return t.name.slice(0, 80); }), null, null);
+        return lib.searchForm(flattenedTasks, flattenedTasks.map(function (t) { return lib.getTaskPath(t); }), null, null);
     };
     lib.remainingTasksFuzzySearchForm = function () {
         var remaining = flattenedTasks.filter(function (task) { return ![Task.Status.Completed, Task.Status.Dropped].includes(task.taskStatus); });
-        return lib.searchForm(remaining, remaining.map(function (t) { return t.name; }), null, null);
+        return lib.searchForm(remaining, remaining.map(function (t) { return lib.getTaskPath(t); }), null, null);
+    };
     };
     return lib;
 })();

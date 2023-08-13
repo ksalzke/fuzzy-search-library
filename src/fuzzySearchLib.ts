@@ -1,4 +1,5 @@
 interface FuzzySearchLibrary extends PlugIn.Library {
+  getTaskPath?: (task: Task) => string
   searchForm?: (allItems: any, itemTitles: string[], firstSelected: any, matchingFunction: Function | null) => FuzzySearchForm
   allTasksFuzzySearchForm?: () => FuzzySearchForm
   remainingTasksFuzzySearchForm?: () => FuzzySearchForm
@@ -13,6 +14,16 @@ interface FuzzySearchForm extends Form {
 
 (() => {
   const lib: FuzzySearchLibrary = new PlugIn.Library(new Version('1.0'))
+
+  lib.getTaskPath = (task: Task) => {
+    const getPath = (task) => {
+      if (!task.parent) return task.name // project in inbox
+      if (task.parent === task.containingProject.task) return `${task.containingProject.name} > ${task.name}`
+      else if (task.parent === task.containingProject.task) return task.name
+      else return `${getPath(task.parent)} > ${task.name}`
+    }
+    return getPath(task)
+  }
 
   lib.searchForm = (allItems, itemTitles, firstSelected, matchingFunction) => {
     const form: FuzzySearchForm = new Form()
@@ -65,12 +76,13 @@ interface FuzzySearchForm extends Form {
   }
 
   lib.allTasksFuzzySearchForm = () => {
-    return lib.searchForm(flattenedTasks, flattenedTasks.map(t => t.name.slice(0, 80)), null, null)
+    return lib.searchForm(flattenedTasks, flattenedTasks.map(t => lib.getTaskPath(t)), null, null)
   }
 
   lib.remainingTasksFuzzySearchForm = () => {
     const remaining = flattenedTasks.filter(task => ![Task.Status.Completed, Task.Status.Dropped].includes(task.taskStatus))
-    return lib.searchForm(remaining, remaining.map(t => t.name), null, null)
+    return lib.searchForm(remaining, remaining.map(t => lib.getTaskPath(t)), null, null)
+  }
   }
 
 
