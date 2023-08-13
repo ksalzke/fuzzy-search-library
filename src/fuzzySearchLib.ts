@@ -23,8 +23,6 @@ interface FuzzySearchForm extends Form {
     // result box
     const searchResults = allItems // list of tasks
     const searchResultTitles = itemTitles // list of task names
-    const searchResultIndexes = allItems.map((_, index: number) => index) // list of task indexes
-    const firstSelectedIndex = (searchResults.indexOf(firstSelected) === -1) ? null : searchResults.indexOf(firstSelected)
     const popupMenu = new Form.Field.Option('menuItem', 'Results', searchResults, searchResultTitles, firstSelected, null)
     popupMenu.allowsNull = true
     popupMenu.nullOptionTitle = 'No Results'

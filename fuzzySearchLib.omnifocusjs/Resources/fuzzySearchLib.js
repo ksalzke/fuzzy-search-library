@@ -7,8 +7,6 @@
         // result box
         var searchResults = allItems; // list of tasks
         var searchResultTitles = itemTitles; // list of task names
-        var searchResultIndexes = allItems.map(function (_, index) { return index; }); // list of task indexes
-        var firstSelectedIndex = (searchResults.indexOf(firstSelected) === -1) ? null : searchResults.indexOf(firstSelected);
         var popupMenu = new Form.Field.Option('menuItem', 'Results', searchResults, searchResultTitles, firstSelected, null);
         popupMenu.allowsNull = true;
         popupMenu.nullOptionTitle = 'No Results';
