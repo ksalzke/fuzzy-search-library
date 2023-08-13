@@ -65,6 +65,9 @@
         var remaining = flattenedTasks.filter(function (task) { return ![Task.Status.Completed, Task.Status.Dropped].includes(task.taskStatus); });
         return lib.searchForm(remaining, remaining.map(function (t) { return lib.getTaskPath(t); }), null, null);
     };
+    lib.activeTagsFuzzySearchForm = function () {
+        var activeTags = flattenedTags.filter(function (tag) { return tag.active; });
+        return lib.searchForm(activeTags, activeTags.map(function (t) { return t.name; }), null, null);
     };
     return lib;
 })();

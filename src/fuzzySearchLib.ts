@@ -3,6 +3,7 @@ interface FuzzySearchLibrary extends PlugIn.Library {
   searchForm?: (allItems: any, itemTitles: string[], firstSelected: any, matchingFunction: Function | null) => FuzzySearchForm
   allTasksFuzzySearchForm?: () => FuzzySearchForm
   remainingTasksFuzzySearchForm?: () => FuzzySearchForm
+  activeTagsFuzzySearchForm?: () => FuzzySearchForm
 }
 
 interface FuzzySearchForm extends Form {
@@ -83,6 +84,10 @@ interface FuzzySearchForm extends Form {
     const remaining = flattenedTasks.filter(task => ![Task.Status.Completed, Task.Status.Dropped].includes(task.taskStatus))
     return lib.searchForm(remaining, remaining.map(t => lib.getTaskPath(t)), null, null)
   }
+
+  lib.activeTagsFuzzySearchForm = () => {
+    const activeTags = flattenedTags.filter(tag => tag.active)
+    return lib.searchForm(activeTags, activeTags.map(t => t.name), null, null)
   }
 
 
