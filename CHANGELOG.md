@@ -1,4 +1,13 @@
-# 1.1.0 (2023-08-13)
+## [1.1.1](https://github.com/ksalzke/fuzzy-search-library/compare/v1.1.0...v1.1.1) (2023-08-22)
+
+
+### Bug Fixes
+
+* :bug: fix bug in getTaskPath - address case where inbox contains nested tasks ([b7c95e2](https://github.com/ksalzke/fuzzy-search-library/commit/b7c95e29cbac3b931069ad22ce8b6317ac3069e2))
+
+
+
+# [1.1.0](https://github.com/ksalzke/fuzzy-search-library/compare/155ede84af5758a8030e727c57793494f58d609d...v1.1.0) (2023-08-13)
 
 
 ### Features
