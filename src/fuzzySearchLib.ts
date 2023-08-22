@@ -18,9 +18,9 @@ interface FuzzySearchForm extends Form {
 
   lib.getTaskPath = (task: Task) => {
     const getPath = (task) => {
-      if (!task.parent) return task.name // project in inbox
-      if (task.parent === task.containingProject.task) return `${task.containingProject.name} > ${task.name}`
-      else if (task.parent === task.containingProject.task) return task.name
+      if (!task.parent) return task.name // project in inbox, first level
+      if (task.containingProject && task.parent === task.containingProject.task) return `${task.containingProject.name} > ${task.name}`
+      else if (task.containingProject && task.parent === task.containingProject.task) return task.name
       else return `${getPath(task.parent)} > ${task.name}`
     }
     return getPath(task)
