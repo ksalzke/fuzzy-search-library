@@ -13,6 +13,11 @@
         };
         return getPath(task);
     };
+    lib.truncateString = function (str, length) {
+        if (str.length <= length)
+            return str;
+        return str.slice(0, length) + '...';
+    };
     lib.searchForm = function (allItems, itemTitles, firstSelected, matchingFunction) {
         var form = new Form();
         // search box
@@ -20,7 +25,7 @@
         // result box
         var searchResults = allItems; // list of tasks
         var searchResultTitles = itemTitles; // list of task names
-        var popupMenu = new Form.Field.Option('menuItem', 'Results', searchResults, searchResultTitles, firstSelected, null);
+        var popupMenu = new Form.Field.Option('menuItem', 'Results', searchResults, searchResultTitles.map(function (title) { return lib.truncateString(title, 70); }), firstSelected, null);
         popupMenu.allowsNull = true;
         popupMenu.nullOptionTitle = 'No Results';
         form.addField(popupMenu, null);
@@ -44,7 +49,7 @@
                     return itemTitles[allItems.indexOf(item)];
                 });
                 // add new popup menu
-                var popupMenu_1 = new Form.Field.Option('menuItem', 'Results', searchResults_1, resultTitles, searchResults_1[0], null);
+                var popupMenu_1 = new Form.Field.Option('menuItem', 'Results', searchResults_1, resultTitles.map(function (title) { return lib.truncateString(title, 70); }), searchResults_1[0], null);
                 form.addField(popupMenu_1, 1);
                 return false;
             }

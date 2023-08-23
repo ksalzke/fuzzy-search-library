@@ -4,6 +4,7 @@ interface FuzzySearchLibrary extends PlugIn.Library {
   allTasksFuzzySearchForm?: () => FuzzySearchForm
   remainingTasksFuzzySearchForm?: () => FuzzySearchForm
   activeTagsFuzzySearchForm?: () => FuzzySearchForm
+  truncateString?: (string: string, length: number) => string
 }
 
 interface FuzzySearchForm extends Form {
@@ -26,6 +27,11 @@ interface FuzzySearchForm extends Form {
     return getPath(task)
   }
 
+  lib.truncateString = (str: string, length: number) => {
+    if (str.length <= length) return str
+    return str.slice(0, length) + '...'
+  }
+
   lib.searchForm = (allItems, itemTitles, firstSelected, matchingFunction) => {
     const form: FuzzySearchForm = new Form()
 
@@ -35,7 +41,7 @@ interface FuzzySearchForm extends Form {
     // result box
     const searchResults = allItems // list of tasks
     const searchResultTitles = itemTitles // list of task names
-    const popupMenu = new Form.Field.Option('menuItem', 'Results', searchResults, searchResultTitles, firstSelected, null)
+    const popupMenu = new Form.Field.Option('menuItem', 'Results', searchResults, searchResultTitles.map(title => lib.truncateString(title, 70)), firstSelected, null)
     popupMenu.allowsNull = true
     popupMenu.nullOptionTitle = 'No Results'
     form.addField(popupMenu, null)
@@ -62,7 +68,7 @@ interface FuzzySearchForm extends Form {
           return itemTitles[allItems.indexOf(item)]
         })
         // add new popup menu
-        const popupMenu = new Form.Field.Option('menuItem', 'Results', searchResults, resultTitles, searchResults[0], null)
+        const popupMenu = new Form.Field.Option('menuItem', 'Results', searchResults, resultTitles.map(title => lib.truncateString(title, 70)), searchResults[0], null)
         form.addField(popupMenu, 1)
         return false
       }
