@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/ksalzke/fuzzy-search-library/compare/v1.1.1...v1.2.0) (2023-08-23)
+
+
+### Features
+
+* :lipstick: truncate string at 70 characters in prereq/dep form ([4f52cf3](https://github.com/ksalzke/fuzzy-search-library/commit/4f52cf3dd6ee54a49ddd3013b67763f057657bed))
+
+
+
 ## [1.1.1](https://github.com/ksalzke/fuzzy-search-library/compare/v1.1.0...v1.1.1) (2023-08-22)
 
 
