@@ -1,3 +1,12 @@
+## [1.2.1](https://github.com/ksalzke/fuzzy-search-library/compare/v1.2.0...v1.2.1) (2023-08-25)
+
+
+### Bug Fixes
+
+* :lipstick: update truncation of options to 150 chars ([bfe6c3e](https://github.com/ksalzke/fuzzy-search-library/commit/bfe6c3ef4c3c3fb7f9b403713b9dc5c2bace37d9))
+
+
+
 # [1.2.0](https://github.com/ksalzke/fuzzy-search-library/compare/v1.1.1...v1.2.0) (2023-08-23)
 
 
