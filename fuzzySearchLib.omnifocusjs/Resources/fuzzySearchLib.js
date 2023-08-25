@@ -25,7 +25,7 @@
         // result box
         var searchResults = allItems; // list of tasks
         var searchResultTitles = itemTitles; // list of task names
-        var popupMenu = new Form.Field.Option('menuItem', 'Results', searchResults, searchResultTitles.map(function (title) { return lib.truncateString(title, 70); }), firstSelected, null);
+        var popupMenu = new Form.Field.Option('menuItem', 'Results', searchResults, searchResultTitles.map(function (title) { return lib.truncateString(title, 150); }), firstSelected, null);
         popupMenu.allowsNull = true;
         popupMenu.nullOptionTitle = 'No Results';
         form.addField(popupMenu, null);
