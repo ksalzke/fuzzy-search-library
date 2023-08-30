@@ -20,6 +20,10 @@
     };
     lib.searchForm = function (allItems, itemTitles, firstSelected, matchingFunction) {
         var form = new Form();
+        // default matching function (if none provided)
+        var defaultMatcher = function (textValue) {
+            return allItems.filter(function (_, index) { return itemTitles[index].toLowerCase().includes(textValue.toLowerCase()); });
+        };
         // search box
         form.addField(new Form.Field.String('textInput', 'Search', null, null), null);
         // result box
@@ -42,7 +46,7 @@
             }
             if (!form.fields.some(function (field) { return field.key === 'menuItem'; })) {
                 // search using provided string
-                var searchResults_1 = (matchingFunction === null) ? allItems.filter(function (_, index) { return itemTitles[index].toLowerCase().includes(textValue.toLowerCase()); }) : (textValue !== '') ? matchingFunction(textValue) : allItems;
+                var searchResults_1 = (matchingFunction === null) ? defaultMatcher(textValue) : (textValue !== '') ? matchingFunction(textValue) : allItems;
                 var resultIndexes_1 = [];
                 var resultTitles = searchResults_1.map(function (item, index) {
                     resultIndexes_1.push(index);

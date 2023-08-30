@@ -35,6 +35,11 @@ interface FuzzySearchForm extends Form {
   lib.searchForm = (allItems, itemTitles, firstSelected, matchingFunction) => {
     const form: FuzzySearchForm = new Form()
 
+    // default matching function (if none provided)
+    const defaultMatcher = (textValue: string) => {
+      return allItems.filter((_, index: number) => itemTitles[index].toLowerCase().includes(textValue.toLowerCase()))
+    }
+
     // search box
     form.addField(new Form.Field.String('textInput', 'Search', null, null), null)
 
@@ -61,7 +66,7 @@ interface FuzzySearchForm extends Form {
 
       if (!form.fields.some(field => field.key === 'menuItem')) {
         // search using provided string
-        const searchResults = (matchingFunction === null) ? allItems.filter((_, index: number) => itemTitles[index].toLowerCase().includes(textValue.toLowerCase())) : (textValue !== '') ? matchingFunction(textValue) : allItems
+        const searchResults = (matchingFunction === null) ? defaultMatcher(textValue) : (textValue !== '') ? matchingFunction(textValue) : allItems
         const resultIndexes = []
         const resultTitles = searchResults.map((item, index) => {
           resultIndexes.push(index)
