@@ -1,6 +1,7 @@
 declare var flattenedProjects: ProjectArray
 declare var flattenedTags: TagArray
 declare var flattenedTasks: TaskArray
+declare var flattenedFolders: FolderArray
 declare var tags: Tags
 declare var settings: Settings
 declare var console: Console

@@ -78,5 +78,9 @@
         var activeTags = flattenedTags.filter(function (tag) { return tag.active; });
         return lib.searchForm(activeTags, activeTags.map(function (t) { return t.name; }), null, null);
     };
+    lib.activeFoldersFuzzySearchForm = function () {
+        var activeFolders = flattenedFolders.filter(function (folder) { return folder.status = Folder.Status.Active; });
+        return lib.searchForm(activeFolders, activeFolders.map(function (f) { return f.name; }), null, null);
+    };
     return lib;
 })();
