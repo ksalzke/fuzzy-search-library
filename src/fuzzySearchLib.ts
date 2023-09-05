@@ -74,7 +74,7 @@ interface FuzzySearchForm extends Form {
           return itemTitles[allItems.indexOf(item)]
         })
         // add new popup menu
-        const popupMenu = new Form.Field.Option('menuItem', 'Results', searchResults, resultTitles.map(title => lib.truncateString(title, 70)), searchResults[0], null)
+        const popupMenu = new Form.Field.Option('menuItem', 'Results', searchResults, resultTitles.map(title => lib.truncateString(title, 150)), searchResults[0], null)
         form.addField(popupMenu, 1)
         return false
       }
