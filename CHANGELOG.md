@@ -1,3 +1,12 @@
+## [1.3.1](https://github.com/ksalzke/fuzzy-search-library/compare/v1.3.0...v1.3.1) (2023-09-05)
+
+
+### Bug Fixes
+
+* :bug: fix truncation only adjusted in one place ([0fa4e4e](https://github.com/ksalzke/fuzzy-search-library/commit/0fa4e4e33b4e8d5976034131b710004001029fd1))
+
+
+
 # [1.3.0](https://github.com/ksalzke/fuzzy-search-library/compare/v1.2.1...v1.3.0) (2023-09-03)
 
 
