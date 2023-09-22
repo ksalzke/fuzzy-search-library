@@ -1,3 +1,12 @@
+## [1.3.2](https://github.com/ksalzke/fuzzy-search-library/compare/v1.3.1...v1.3.2) (2023-09-22)
+
+
+### Bug Fixes
+
+* :bug: fix bug where dropped folders were being reactivated ([f4a8d97](https://github.com/ksalzke/fuzzy-search-library/commit/f4a8d975449624728890fee43799ad5e6989f369))
+
+
+
 ## [1.3.1](https://github.com/ksalzke/fuzzy-search-library/compare/v1.3.0...v1.3.1) (2023-09-05)
 
 
