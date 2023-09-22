@@ -1,3 +1,12 @@
+# [1.4.0](https://github.com/ksalzke/fuzzy-search-library/compare/v1.3.2...v1.4.0) (2023-09-22)
+
+
+### Features
+
+* :sparkles: implement fuzzy matching ([375cd37](https://github.com/ksalzke/fuzzy-search-library/commit/375cd37fcd2059d93c1c0f421f8de18d964e4177))
+
+
+
 ## [1.3.2](https://github.com/ksalzke/fuzzy-search-library/compare/v1.3.1...v1.3.2) (2023-09-22)
 
 
