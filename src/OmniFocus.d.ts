@@ -7,6 +7,9 @@ declare var settings: Settings
 declare var console: Console
 declare function moveTasks(tasks: Task[], position: Task | Project | Task.ChildInsertionLocation): void
 declare function moveTags(tags: Tag[], position: Tag | Tag.ChildInsertionLocation): void
+declare function projectsMatching(search: string): Project[]
+declare function tagsMatching(search: string): Tag[]
+declare function foldersMatching(search: string): Folder[]
 
 
 // TypeScript definitions for OmniFocus 3.13.1 (151.27) on macOS 12.2.1
