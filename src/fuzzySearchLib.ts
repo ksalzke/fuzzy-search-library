@@ -103,7 +103,7 @@ interface FuzzySearchForm extends Form {
   }
 
   lib.activeFoldersFuzzySearchForm = () => {
-    const activeFolders = flattenedFolders.filter(folder => folder.status = Folder.Status.Active)
+    const activeFolders = flattenedFolders.filter(folder => folder.status === Folder.Status.Active)
     return lib.searchForm(activeFolders, activeFolders.map(f => f.name), null, null)
   }
 
