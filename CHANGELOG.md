@@ -1,3 +1,12 @@
+# [1.5.0](https://github.com/ksalzke/fuzzy-search-library/compare/v1.4.0...v1.5.0) (2023-09-24)
+
+
+### Features
+
+* :sparkles: add functions for matching projects ([8e779cc](https://github.com/ksalzke/fuzzy-search-library/commit/8e779cc55eae1f61ac1fc114592345a12b8fd667))
+
+
+
 # [1.4.0](https://github.com/ksalzke/fuzzy-search-library/compare/v1.3.2...v1.4.0) (2023-09-22)
 
 
