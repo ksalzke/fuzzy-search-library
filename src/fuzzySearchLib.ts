@@ -5,6 +5,8 @@ interface FuzzySearchLibrary extends PlugIn.Library {
   remainingTasksFuzzySearchForm?: () => FuzzySearchForm
   activeTagsFuzzySearchForm?: () => FuzzySearchForm
   activeFoldersFuzzySearchForm?: () => FuzzySearchForm
+  allProjectsFuzzySearchForm?: () => FuzzySearchForm
+  remainingProjectsFuzzySearchForm?: () => FuzzySearchForm
   truncateString?: (string: string, length: number) => string
 }
 
@@ -302,7 +304,14 @@ interface FuzzySearchForm extends Form {
     return lib.searchForm(activeFolders, activeFolders.map(f => f.name), null, null)
   }
 
+  lib.allProjectsFuzzySearchForm = () => {
+    return lib.searchForm(flattenedProjects, flattenedProjects.map(t => lib.getTaskPath(t)), null, null)
+  }
 
+  lib.remainingProjectsFuzzySearchForm = () => {
+    const remaining = flattenedProjects.filter(project => ![Task.Status.Completed, Task.Status.Dropped].includes(project.taskStatus))
+    return lib.searchForm(remaining, remaining.map(t => lib.getTaskPath(t)), null, null)
+  }
 
   return lib
 })()

@@ -226,5 +226,12 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
         var activeFolders = flattenedFolders.filter(function (folder) { return folder.status === Folder.Status.Active; });
         return lib.searchForm(activeFolders, activeFolders.map(function (f) { return f.name; }), null, null);
     };
+    lib.allProjectsFuzzySearchForm = function () {
+        return lib.searchForm(flattenedProjects, flattenedProjects.map(function (t) { return lib.getTaskPath(t); }), null, null);
+    };
+    lib.remainingProjectsFuzzySearchForm = function () {
+        var remaining = flattenedProjects.filter(function (project) { return ![Task.Status.Completed, Task.Status.Dropped].includes(project.taskStatus); });
+        return lib.searchForm(remaining, remaining.map(function (t) { return lib.getTaskPath(t); }), null, null);
+    };
     return lib;
 })();
