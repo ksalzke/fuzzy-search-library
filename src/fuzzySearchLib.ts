@@ -50,7 +50,7 @@ interface FuzzySearchForm extends Form {
     // default matching function (if none provided)
     const defaultMatcher = (textValue: string) => {
 
-      // fuzzy match from Forrest Smith: https://pkg.go.dev/github.com/deanishe/awgo/fuzzy#pkg-overview
+      // fuzzy match from Forrest Smith: https://www.forrestthewoods.com/blog/reverse_engineering_sublime_texts_fuzzy_match/
       //
       // VERSION
       //   0.1.0  (2016-03-28)  Initial release
