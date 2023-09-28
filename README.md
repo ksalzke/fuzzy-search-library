@@ -6,6 +6,8 @@ The functions in this library return a form with two fields: the first is a 'Str
 
 The search algorithm works similarly (but not necessarily identically) to OmniFocus's built-in 'smart search' so exact search terms are not required i.e. searching for 'tp' will return the result 'Test Project'. (However, if desired, a custom function can be passed to the custom `searchForm` function to use a different method.)
 
+Examples of the types of forms that can be used can be seen in my other plug-ins, such as my [Move To Action Group plug-in](https://github.com/ksalzke/move-to-action-group-omnifocus-plugin)
+
 _Credits:_ 
 
 The original idea for this plug-in came from Omni's Slack community, with the first iteration of code for the form dialogue written by Sal Soghoian.
@@ -57,7 +59,7 @@ await form.show('Tags To Add', 'OK')
 
 The above generates the dialogue below: 
 
-[INSERT VIDEO HERE]
+![Demo Form](https://github.com/ksalzke/fuzzy-search-library/assets/16893787/b0384556-ddb5-44f6-88b3-0ffeb4307acd)
 
 Alternatively, a **custom** list/form can be used by calling the `searchForm` function with appropriate parameters.
 
@@ -81,15 +83,13 @@ This plug-in does not contain any actions.
 
 # Functions
 
-The following actions are contained within the `fuzzySearchLib` library:
+The following functions are contained within the `fuzzySearchLib` library:
 
-
-
-## `getTaskPath?: (task: Task) => string`
+## `getTaskPath: (task: Task) => string`
 
 Returns the full path of a task, from the project level. Nested action groups are also included
 
-## `searchForm?: (allItems: any, itemTitles: string[], firstSelected: any, matchingFunction: Function | null) => FuzzySearchForm`
+## `searchForm: (allItems: any, itemTitles: string[], firstSelected: any, matchingFunction: Function | null) => FuzzySearchForm`
 
 Returns a custom search form.
 `allItems` is a list of any items.
@@ -97,30 +97,30 @@ Returns a custom search form.
 `firstSelected` is one of the items that should be selected by default.
 `matchingFunction` is a function that should be used to determine which functions match the search input. (For example, passing `projectsMatching` will use the default OmniFocus methodology and could be used on a list containing only projects.) If no function is passed, the default 'smart search' logic will be used.
 
-## `allTasksFuzzySearchForm?: () => FuzzySearchForm`
+## `allTasksFuzzySearchForm: () => FuzzySearchForm`
 
 Returns a search form which includes all tasks (including completed and dropped tasks).
 
-## `remainingTasksFuzzySearchForm?: () => FuzzySearchForm`
+## `remainingTasksFuzzySearchForm: () => FuzzySearchForm`
 
 Returns a search form which includes all remaining tasks.
 
-## `activeTagsFuzzySearchForm?: () => FuzzySearchForm`
+## `activeTagsFuzzySearchForm: () => FuzzySearchForm`
 
 Returns a search form which includes all active tags.
 
-## `activeFoldersFuzzySearchForm?: () => FuzzySearchForm`
+## `activeFoldersFuzzySearchForm: () => FuzzySearchForm`
 
 Returns a search form which includes all active folders.
 
-## `allProjectsFuzzySearchForm?: () => FuzzySearchForm`
+## `allProjectsFuzzySearchForm: () => FuzzySearchForm`
 
 Returns a search form which includes all projects (including completed and dropped projects).
 
-## `remainingProjectsFuzzySearchForm?: () => FuzzySearchForm`
+## `remainingProjectsFuzzySearchForm: () => FuzzySearchForm`
 
 Returns a search form which includes all remaining projects.
 
-## `truncateString?: (string: string, length: number) => string`
+## `truncateString: (string: string, length: number) => string`
 
 Truncates a given string to the given number of characters.
