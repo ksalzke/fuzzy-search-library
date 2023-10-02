@@ -15,8 +15,6 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
                 return task.name; // project in inbox, first level
             if (task.containingProject && task.parent === task.containingProject.task)
                 return task.containingProject.name + " > " + task.name;
-            else if (task.containingProject && task.parent === task.containingProject.task)
-                return task.name;
             else
                 return getPath(task.parent) + " > " + task.name;
         };
@@ -37,7 +35,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
         });
         // default matching function (if none provided)
         var defaultMatcher = function (textValue) {
-            // fuzzy match from Forrest Smith: https://pkg.go.dev/github.com/deanishe/awgo/fuzzy#pkg-overview
+            // fuzzy match from Forrest Smith: https://www.forrestthewoods.com/blog/reverse_engineering_sublime_texts_fuzzy_match/
             //
             // VERSION
             //   0.1.0  (2016-03-28)  Initial release
