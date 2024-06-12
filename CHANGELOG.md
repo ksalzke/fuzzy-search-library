@@ -1,3 +1,13 @@
+# [1.7.0](https://github.com/ksalzke/fuzzy-search-library/compare/v1.6.0...v1.7.0) (2024-06-12)
+
+
+### Features
+
+* :lipstick: add getFolderPath and show folder for folder and project selections ([41569f8](https://github.com/ksalzke/fuzzy-search-library/commit/41569f891b2b02e979fb392cd964efc0d183304a))
+* :lipstick: show folder path in active folders fuzzy search form ([01c869b](https://github.com/ksalzke/fuzzy-search-library/commit/01c869beeb8d29328e76d6c54611a316afc3757e))
+
+
+
 # [1.6.0](https://github.com/ksalzke/fuzzy-search-library/compare/v1.5.0...v1.6.0) (2024-06-12)
 
 
