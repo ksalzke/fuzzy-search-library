@@ -5,6 +5,7 @@ interface FuzzySearchLibrary extends PlugIn.Library {
   allTasksFuzzySearchForm?: () => FuzzySearchForm
   remainingTasksFuzzySearchForm?: () => FuzzySearchForm
   activeTagsFuzzySearchForm?: () => FuzzySearchForm
+  getFolderPath?: (folder: Folder) => string
   activeFoldersFuzzySearchForm?: () => FuzzySearchForm
   allProjectsFuzzySearchForm?: () => FuzzySearchForm
   remainingProjectsFuzzySearchForm?: () => FuzzySearchForm
@@ -314,28 +315,28 @@ interface FuzzySearchForm extends Form {
     return lib.searchForm(remaining, remaining.map(t => lib.getTaskPath(t)), null, null)
   }
 
+  lib.getFolderPath = (folder: Folder): string => {
+    if (!folder.parent) return folder.name
+    return `${lib.getFolderPath(folder.parent)} > ${folder.name}`
+  }
+
   lib.activeTagsFuzzySearchForm = () => {
     const activeTags = flattenedTags.filter(tag => tag.active)
     return lib.searchForm(activeTags, activeTags.map(t => t.name), null, null)
   }
 
   lib.activeFoldersFuzzySearchForm = () => {
-    const getFolderPath = (folder: Folder) => {
-      if (!folder.parent) return folder.name
-      return `${getFolderPath(folder.parent)} > ${folder.name}`
-    }
-
     const activeFolders = flattenedFolders.filter(folder => folder.status === Folder.Status.Active)
-    return lib.searchForm(activeFolders, activeFolders.map(getFolderPath), null, null)
+    return lib.searchForm(activeFolders, activeFolders.map(lib.getFolderPath), null, null)
   }
 
   lib.allProjectsFuzzySearchForm = () => {
-    return lib.searchForm(flattenedProjects, flattenedProjects.map(t => lib.getTaskPath(t)), null, null)
+    return lib.searchForm(flattenedProjects, flattenedProjects.map(t => lib.getTaskPathWithFolders(t)), null, null)
   }
 
   lib.remainingProjectsFuzzySearchForm = () => {
     const remaining = flattenedProjects.filter(project => ![Task.Status.Completed, Task.Status.Dropped].includes(project.taskStatus))
-    return lib.searchForm(remaining, remaining.map(t => lib.getTaskPath(t)), null, null)
+    return lib.searchForm(remaining, remaining.map(t => lib.getTaskPathWithFolders(t)), null, null)
   }
 
   return lib

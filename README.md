@@ -92,6 +92,10 @@ Returns the full path of a task, from the project level. Nested action groups ar
 ## `getTaskPathWithFolders: (task: Task) => string`
 Returns the full path of a task, from the root level including all folders. Nested action groups are also included.
 
+## `getFolderPath: (folder: Folder) => string`
+
+Returns the full path of a folder, from the root level including all folders.
+
 ## `searchForm: (allItems: any, itemTitles: string[], firstSelected: any, matchingFunction: Function | null) => FuzzySearchForm`
 
 Returns a custom search form.
@@ -114,15 +118,15 @@ Returns a search form which includes all active tags.
 
 ## `activeFoldersFuzzySearchForm: () => FuzzySearchForm`
 
-Returns a search form which includes all active folders.
+Returns a search form which includes all active folders. The hierarchy is shown in the form.
 
 ## `allProjectsFuzzySearchForm: () => FuzzySearchForm`
 
-Returns a search form which includes all projects (including completed and dropped projects).
+Returns a search form which includes all projects (including completed and dropped projects). The folder hierarchy is shown in the form.
 
 ## `remainingProjectsFuzzySearchForm: () => FuzzySearchForm`
 
-Returns a search form which includes all remaining projects.
+Returns a search form which includes all remaining projects. The folder hierarchy is shown in the form.
 
 ## `truncateString: (string: string, length: number) => string`
 

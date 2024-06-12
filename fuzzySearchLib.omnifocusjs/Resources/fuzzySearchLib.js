@@ -236,25 +236,25 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
         var remaining = flattenedTasks.filter(function (task) { return ![Task.Status.Completed, Task.Status.Dropped].includes(task.taskStatus); });
         return lib.searchForm(remaining, remaining.map(function (t) { return lib.getTaskPath(t); }), null, null);
     };
+    lib.getFolderPath = function (folder) {
+        if (!folder.parent)
+            return folder.name;
+        return lib.getFolderPath(folder.parent) + " > " + folder.name;
+    };
     lib.activeTagsFuzzySearchForm = function () {
         var activeTags = flattenedTags.filter(function (tag) { return tag.active; });
         return lib.searchForm(activeTags, activeTags.map(function (t) { return t.name; }), null, null);
     };
     lib.activeFoldersFuzzySearchForm = function () {
-        var getFolderPath = function (folder) {
-            if (!folder.parent)
-                return folder.name;
-            return getFolderPath(folder.parent) + " > " + folder.name;
-        };
         var activeFolders = flattenedFolders.filter(function (folder) { return folder.status === Folder.Status.Active; });
-        return lib.searchForm(activeFolders, activeFolders.map(getFolderPath), null, null);
+        return lib.searchForm(activeFolders, activeFolders.map(lib.getFolderPath), null, null);
     };
     lib.allProjectsFuzzySearchForm = function () {
-        return lib.searchForm(flattenedProjects, flattenedProjects.map(function (t) { return lib.getTaskPath(t); }), null, null);
+        return lib.searchForm(flattenedProjects, flattenedProjects.map(function (t) { return lib.getTaskPathWithFolders(t); }), null, null);
     };
     lib.remainingProjectsFuzzySearchForm = function () {
         var remaining = flattenedProjects.filter(function (project) { return ![Task.Status.Completed, Task.Status.Dropped].includes(project.taskStatus); });
-        return lib.searchForm(remaining, remaining.map(function (t) { return lib.getTaskPath(t); }), null, null);
+        return lib.searchForm(remaining, remaining.map(function (t) { return lib.getTaskPathWithFolders(t); }), null, null);
     };
     return lib;
 })();
