@@ -3,7 +3,7 @@
   "identifier": "com.KaitlinSalzke.fuzzySearchLib",
   "author": "Kaitlin Salzke",
   "description": "An OmniFocus library to assist with generating 'fuzzy search' fields in forms.",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "actions": [],
   "libraries": [
     {

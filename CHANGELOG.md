@@ -1,3 +1,12 @@
+# [1.6.0](https://github.com/ksalzke/fuzzy-search-library/compare/v1.5.0...v1.6.0) (2024-06-12)
+
+
+### Features
+
+* :sparkles: add getTaskPathWithFolders function ([aaf5604](https://github.com/ksalzke/fuzzy-search-library/commit/aaf56049e8aa2e2550eabb6c3e0c72b093118bad))
+
+
+
 # [1.5.0](https://github.com/ksalzke/fuzzy-search-library/compare/v1.4.0...v1.5.0) (2023-09-24)
 
 
