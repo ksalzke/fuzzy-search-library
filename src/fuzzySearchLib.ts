@@ -320,8 +320,13 @@ interface FuzzySearchForm extends Form {
   }
 
   lib.activeFoldersFuzzySearchForm = () => {
+    const getFolderPath = (folder: Folder) => {
+      if (!folder.parent) return folder.name
+      return `${getFolderPath(folder.parent)} > ${folder.name}`
+    }
+
     const activeFolders = flattenedFolders.filter(folder => folder.status === Folder.Status.Active)
-    return lib.searchForm(activeFolders, activeFolders.map(f => f.name), null, null)
+    return lib.searchForm(activeFolders, activeFolders.map(getFolderPath), null, null)
   }
 
   lib.allProjectsFuzzySearchForm = () => {

@@ -241,8 +241,13 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
         return lib.searchForm(activeTags, activeTags.map(function (t) { return t.name; }), null, null);
     };
     lib.activeFoldersFuzzySearchForm = function () {
+        var getFolderPath = function (folder) {
+            if (!folder.parent)
+                return folder.name;
+            return getFolderPath(folder.parent) + " > " + folder.name;
+        };
         var activeFolders = flattenedFolders.filter(function (folder) { return folder.status === Folder.Status.Active; });
-        return lib.searchForm(activeFolders, activeFolders.map(function (f) { return f.name; }), null, null);
+        return lib.searchForm(activeFolders, activeFolders.map(getFolderPath), null, null);
     };
     lib.allProjectsFuzzySearchForm = function () {
         return lib.searchForm(flattenedProjects, flattenedProjects.map(function (t) { return lib.getTaskPath(t); }), null, null);
