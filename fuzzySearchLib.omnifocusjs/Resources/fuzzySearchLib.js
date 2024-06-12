@@ -20,6 +20,26 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
         };
         return getPath(task);
     };
+    lib.getTaskPathWithFolders = function (task) {
+        var getFolderPath = function (task) {
+            var folders = __spreadArray([], flattenedFolders, true).filter(function (folder) { return __spreadArray([], folder.flattenedProjects, true).includes(task.containingProject); });
+            var folderNames = __spreadArray([], folders, true).map(function (folder) { return folder.name; });
+            return folderNames.join(' > ');
+        };
+        var getPath = function (task) {
+            if (task.inInbox)
+                return task.name; // task in inbox
+            if (!task.parent)
+                return getFolderPath(task) + " > " + task.name; // is a project
+            if (task.containingProject && task.parent === task.containingProject.task) {
+                // task is at root of project
+                return getFolderPath(task) + " > " + task.containingProject.name + " > " + task.name;
+            }
+            else
+                return getPath(task.parent) + " > " + task.name;
+        };
+        return getPath(task);
+    };
     lib.truncateString = function (str, length) {
         if (str.length <= length)
             return str;

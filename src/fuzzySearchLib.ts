@@ -1,5 +1,6 @@
 interface FuzzySearchLibrary extends PlugIn.Library {
   getTaskPath?: (task: Task) => string
+  getTaskPathWithFolders?: (task: Task) => string
   searchForm?: (allItems: any, itemTitles: string[], firstSelected: any, matchingFunction: Function | null) => FuzzySearchForm
   allTasksFuzzySearchForm?: () => FuzzySearchForm
   remainingTasksFuzzySearchForm?: () => FuzzySearchForm
@@ -24,6 +25,26 @@ interface FuzzySearchForm extends Form {
     const getPath = (task) => {
       if (!task.parent) return task.name // project in inbox, first level
       if (task.containingProject && task.parent === task.containingProject.task) return `${task.containingProject.name} > ${task.name}`
+      else return `${getPath(task.parent)} > ${task.name}`
+    }
+    return getPath(task)
+  }
+
+  lib.getTaskPathWithFolders = (task: Task) => {
+
+    const getFolderPath = (task: Task) => {
+      const folders = [...flattenedFolders].filter(folder => [...folder.flattenedProjects].includes(task.containingProject))
+      const folderNames = [...folders].map(folder => folder.name)
+      return folderNames.join(' > ')
+    }
+
+    const getPath = (task: Task) => {
+      if (task.inInbox) return task.name // task in inbox
+      if (!task.parent) return `${getFolderPath(task)} > ${task.name}` // is a project
+      if (task.containingProject && task.parent === task.containingProject.task) {
+        // task is at root of project
+        return `${getFolderPath(task)} > ${task.containingProject.name} > ${task.name}`
+      }
       else return `${getPath(task.parent)} > ${task.name}`
     }
     return getPath(task)

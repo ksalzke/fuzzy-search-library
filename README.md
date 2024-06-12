@@ -87,7 +87,10 @@ The following functions are contained within the `fuzzySearchLib` library:
 
 ## `getTaskPath: (task: Task) => string`
 
-Returns the full path of a task, from the project level. Nested action groups are also included
+Returns the full path of a task, from the project level. Nested action groups are also included.
+
+## `getTaskPathWithFolders: (task: Task) => string`
+Returns the full path of a task, from the root level including all folders. Nested action groups are also included.
 
 ## `searchForm: (allItems: any, itemTitles: string[], firstSelected: any, matchingFunction: Function | null) => FuzzySearchForm`
 
